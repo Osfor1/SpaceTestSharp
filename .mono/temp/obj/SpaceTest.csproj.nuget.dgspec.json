@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\phili\\Desktop\\OpenSource Games\\GodotGameEngine\\Godot_v3.3.2-stable_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj": {}
+    "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\phili\\Desktop\\OpenSource Games\\GodotGameEngine\\Godot_v3.3.2-stable_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj": {
+    "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\phili\\Desktop\\OpenSource Games\\GodotGameEngine\\Godot_v3.3.2-stable_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj",
+        "projectUniqueName": "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj",
         "projectName": "SpaceTest",
-        "projectPath": "C:\\Users\\phili\\Desktop\\OpenSource Games\\GodotGameEngine\\Godot_v3.3.2-stable_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj",
+        "projectPath": "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj",
         "packagesPath": "C:\\Users\\phili\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\phili\\Desktop\\OpenSource Games\\GodotGameEngine\\Godot_v3.3.2-stable_mono_win64\\Projects\\SpaceTestSharp\\.mono\\temp\\obj\\",
+        "outputPath": "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\phili\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net472"

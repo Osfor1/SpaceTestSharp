@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class Chunk
 {
     [Export]
-    public static int ChunkSize { get; set; } = 200; // tiles
-    public static int ChunkGenDistance { get; set; } = 6;
+    public static int ChunkSize { get; set; } = 100; // tiles
+    public static int ChunkGenDistance { get; set; } = 2;
 
     public static ConcurrentQueue<Chunk> ConcurrentChunkQueue = new ConcurrentQueue<Chunk>();
 
