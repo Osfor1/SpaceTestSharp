@@ -23,3 +23,12 @@ C:\Users\phili\Desktop\Godot_mono_win64\Projects\SpaceTestSharp\.mono\temp\obj\D
 C:\Users\phili\Desktop\Godot_mono_win64\Projects\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.csproj.CoreCompileInputs.cache
 C:\Users\phili\Desktop\Godot_mono_win64\Projects\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.dll
 C:\Users\phili\Desktop\Godot_mono_win64\Projects\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.pdb
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\bin\Debug\SpaceTest.dll
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\bin\Debug\SpaceTest.pdb
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.csproj.AssemblyReference.cache
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.GeneratedMSBuildEditorConfig.editorconfig
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.AssemblyInfoInputs.cache
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.AssemblyInfo.cs
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.csproj.CoreCompileInputs.cache
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.dll
+G:\Users\Philipp\Documents\_Dokumente\Entwicklung\SpaceTestSharp\.mono\temp\obj\Debug\SpaceTest.pdb

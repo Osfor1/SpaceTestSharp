@@ -7,7 +7,9 @@ public class Chunk
 {
     [Export]
     public static int ChunkSize { get; set; } = 100; // tiles
+    public static int TileSize { get; set; } = 16; // tiles
     public static int ChunkGenDistance { get; set; } = 2;
+    public static int ChunkUnloadDistance { get; set; } = ChunkGenDistance + 4;
 
     public static ConcurrentQueue<Chunk> ConcurrentChunkQueue = new ConcurrentQueue<Chunk>();
 

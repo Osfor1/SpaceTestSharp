@@ -9,24 +9,29 @@
   },
   "packageFolders": {
     "C:\\Users\\phili\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj",
+      "projectUniqueName": "G:\\Users\\Philipp\\Documents\\_Dokumente\\Entwicklung\\SpaceTestSharp\\SpaceTest.csproj",
       "projectName": "SpaceTest",
-      "projectPath": "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\SpaceTest.csproj",
+      "projectPath": "G:\\Users\\Philipp\\Documents\\_Dokumente\\Entwicklung\\SpaceTestSharp\\SpaceTest.csproj",
       "packagesPath": "C:\\Users\\phili\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\phili\\Desktop\\Godot_mono_win64\\Projects\\SpaceTestSharp\\.mono\\temp\\obj\\",
+      "outputPath": "G:\\Users\\Philipp\\Documents\\_Dokumente\\Entwicklung\\SpaceTestSharp\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\phili\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net472"

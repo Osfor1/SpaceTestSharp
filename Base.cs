@@ -13,8 +13,6 @@ public class Base : Node2D
 		_lastPlayerChunkY = 999999;
 	}
 
-	private List<Tuple<int, int>> _generatedPlayerChunkLst = new List<Tuple<int, int>>();
-
 	public OpenSimplexNoise SmallAsteroidNoise { get; private set; }
 	public OpenSimplexNoise AsteroidClampingNoise { get; private set; }
 
@@ -48,72 +46,75 @@ public class Base : Node2D
 	{
 		var playerX = (int)Math.Round(Player.PlayerCoordinates.x, MidpointRounding.AwayFromZero);
 		var playerY = (int)Math.Round(Player.PlayerCoordinates.y, MidpointRounding.AwayFromZero);
-		var playerChunkX = (int)Math.Round((float)playerX / (((float)Chunk.ChunkSize * 16)), MidpointRounding.AwayFromZero);
-		var playerChunkY = (int)Math.Round((float)playerY / (((float)Chunk.ChunkSize * 16)), MidpointRounding.AwayFromZero);
+		var playerChunkX = (int)Math.Round((float)playerX / (((float)Chunk.ChunkSize * Chunk.TileSize)), MidpointRounding.AwayFromZero);
+		var playerChunkY = (int)Math.Round((float)playerY / (((float)Chunk.ChunkSize * Chunk.TileSize)), MidpointRounding.AwayFromZero);
 
         this.generateWorld(playerChunkX, playerChunkY);
 
 		// check the concurrentQuery for items and add the chunk to the world
 		// var dequeue = Chunk.ConcurrentChunkQueue.TryDequeue(out Chunk result);
 		var sw = new Stopwatch();
-		while (sw.ElapsedMilliseconds <= 4 && 
+		sw.Start();
+		while (sw.ElapsedMilliseconds < 4 &&
 			Chunk.ConcurrentChunkQueue.TryDequeue(out Chunk result))
 		{
-			sw.Start();
-			var newTileMap = result.TileMapDict[TileType.Stone];
-			GetTree().Root.CallDeferred("add_child", newTileMap);
-			sw.Stop();
+			GetTree().Root.CallDeferred("add_child", result.TileMapDict[TileType.Stone]);
 		}
 	}
 
-	private Dictionary<int, List<int>> generatedChunkDict = new Dictionary<int, List<int>>();
+	private List<KeyValuePair<int, int>> _generatedChunkDict = new List<KeyValuePair<int, int>>();
+	private List<KeyValuePair<int, int>> _unloadChunkDict = new List<KeyValuePair<int, int>>();
 
     private void generateWorld(int playerChunkX, int playerChunkY)
     {
 		var baseAsteroidTilemap = (Godot.TileMap)GetNode("Asteroid_TileMap");
-		baseAsteroidTilemap.Clear();
 
         // check world generation on every player chunk change
 		if(_lastPlayerChunkX == playerChunkX && _lastPlayerChunkY == playerChunkY) {
 			return;
 		}
 
-		// iterate chunks around player
-		for (var y = (playerChunkY - Chunk.ChunkGenDistance); y <= playerChunkY + Chunk.ChunkGenDistance; y ++) {
-			for (var x = (playerChunkX - Chunk.ChunkGenDistance); x <= playerChunkX + Chunk.ChunkGenDistance; x ++) {
+		// add new chunks around player
+		for (var y = (playerChunkY - Chunk.ChunkGenDistance); y <= playerChunkY + Chunk.ChunkGenDistance; y++) {
+			for (var x = (playerChunkX - Chunk.ChunkGenDistance); x <= playerChunkX + Chunk.ChunkGenDistance; x++) {
 
 				// stop if this chunk is alredy created
-				if (generatedChunkDict.TryGetValue(x, out List<int> output)) {
-					if (output.Where(c => c == y).Any()) {
-						continue;
-					}
-					else
-					{
-						generatedChunkDict[x].Add(y);
-					}
+				if (_generatedChunkDict.Where(c => c.Key == x && c.Value == y).Any()) {
+					continue;
 				}
-				else {
-					var lst = new List<int>();
-					lst.Add(y);
-					generatedChunkDict.Add(x, lst);
+				else
+				{
+					_generatedChunkDict.Add(new KeyValuePair<int, int>(x, y));
 				}
 
 				// start a new thread to generate this given chunk
-				
 				var chunk = new Chunk();
 				chunk.ChunkCoordinates = new Vector2(x,y);
 				chunk.TileMapDict.Add(TileType.Stone, (TileMap)baseAsteroidTilemap.Duplicate());
-				var thread = new System.Threading.Thread(() => GenerateChunkAsync(chunk));
+				var thread = new System.Threading.Thread(() => GenerateChunkAsync(chunk, SmallAsteroidNoise, AsteroidClampingNoise));
 				thread.Start();
 				//this.GenerateChunkAsync(chunk);
 			}
 		}
+		// remove distant chunks around player
+		// for (var y = (playerChunkY - Chunk.ChunkUnloadDistance); y <= playerChunkY + Chunk.ChunkUnloadDistance; y ++) {
+		// 	for (var x = (playerChunkX - Chunk.ChunkUnloadDistance); x <= playerChunkX + Chunk.ChunkUnloadDistance; x ++) {
+
+		// 		// but never remove correctly loaded chunks
+		// 		if (y < (playerChunkY - Chunk.ChunkGenDistance) || y > (playerChunkY + Chunk.ChunkGenDistance) &&
+		// 			x < (playerChunkX - Chunk.ChunkGenDistance) || x > (playerChunkX + Chunk.ChunkGenDistance) &&
+		// 			_generatedChunkDict.Where(c => c.Key == x && c.Value == y).Any())
+		// 		{
+		// 			_unloadChunkDict.Add(new KeyValuePair<int, int>(x, y));
+		// 		}
+		// 	}
+		// }
 
 		_lastPlayerChunkX = playerChunkX;
 		_lastPlayerChunkY = playerChunkY;
     }
 
-    public void GenerateChunkAsync(Chunk chunk)
+    public void GenerateChunkAsync(Chunk chunk, OpenSimplexNoise smallAsteroidNoise, OpenSimplexNoise asteroidClampingNoise)
     {
 		var tileX = chunk.ChunkStartTileLocation.x;
 		var tileY = chunk.ChunkStartTileLocation.y;
@@ -122,8 +123,8 @@ public class Base : Node2D
 
 		for (var y = tileY; y < tileY + Chunk.ChunkSize; y++) {
         	for (var x = tileX; x < tileX + Chunk.ChunkSize; x++) {
-				var smallAsteroid_Threshold = SmallAsteroidNoise.GetNoise2d(x, y);
-				var asteroidClamping_Threshold = AsteroidClampingNoise.GetNoise2d(x, y);
+				var smallAsteroid_Threshold = smallAsteroidNoise.GetNoise2d(x, y);
+				var asteroidClamping_Threshold = asteroidClampingNoise.GetNoise2d(x, y);
 
 				if (smallAsteroid_Threshold > 0.3) {
 					tilemap.SetCell((int)x, (int)y, 0);
